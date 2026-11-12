@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES6", "ES7", "DOM.Iterable"],
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "obsidian-flashcards",
+  "version": "0.1.0",
+  "description": "Interactive Flashcards: convierte bloques :::flashcard en mazos interactivos dentro de Live Preview y Reading View.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "npm run typecheck && node esbuild.config.mjs production",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "obsidian",
+    "flashcards",
+    "plugin"
+  ],
+  "author": "cara",
+  "license": "MIT",
+  "devDependencies": {
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.15",
+    "@types/node": "^20.14.0",
+    "builtin-modules": "^3.3.0",
+    "esbuild": "^0.21.5",
+    "obsidian": "^1.5.7",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
+  }
+}

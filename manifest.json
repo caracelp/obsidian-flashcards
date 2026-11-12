@@ -1,0 +1,9 @@
+{
+  "id": "interactive-flashcards",
+  "name": "Interactive Flashcards",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Convierte bloques :::flashcard en mazos de tarjetas interactivas en Live Preview y Reading View, sin alterar el Markdown original.",
+  "author": "cara",
+  "isDesktopOnly": false
+}

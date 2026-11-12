@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Interactive Flashcards
+   Los estilos usan variables CSS de Obsidian, así que el mazo se adapta al
+   tema claro/oscuro y al ancho de la nota sin dimensiones rígidas.
+   ========================================================================== */
+
+/* --- Contenedor del mazo ------------------------------------------------- */
+
+.fc-deck {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	width: 100%;
+	margin: 0.75rem 0;
+	padding: 0.75rem;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 10px;
+	background-color: var(--background-secondary);
+}
+
+.fc-deck:focus-visible,
+.fc-live-deck:focus-within .fc-deck {
+	outline: 2px solid var(--background-modifier-border-focus);
+	outline-offset: 2px;
+}
+
+/* --- Escena y tarjeta (volteo 3D) ---------------------------------------- */
+
+.fc-scene {
+	perspective: 1200px;
+	cursor: pointer;
+	-webkit-user-select: text;
+	user-select: text;
+}
+
+.fc-card {
+	display: grid;
+	transform-style: preserve-3d;
+	transition: transform var(--fc-flip-duration, 300ms) ease;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	background-color: var(--background-primary);
+	box-shadow: var(--shadow-s);
+}
+
+/* Ambas caras comparten la misma celda de la grilla: la altura del contenedor
+   siempre es la del lado más alto, sin posiciones absolutas. */
+.fc-face {
+	grid-area: 1 / 1;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	border-radius: 8px;
+	padding: 1rem 1.25rem;
+	overflow-wrap: break-word;
+}
+
+.fc-face--back {
+	transform: rotateY(180deg);
+	background-color: var(--background-primary-alt);
+}
+
+.fc-card.is-flipped {
+	transform: rotateY(180deg);
+}
+
+.fc-face-content > *:first-child {
+	margin-top: 0;
+}
+
+.fc-face-content > *:last-child {
+	margin-bottom: 0;
+}
+
+/* --- Controles ------------------------------------------------------------ */
+
+.fc-controls {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	flex-wrap: wrap;
+}
+
+.fc-btn {
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	padding: 0.3rem 0.75rem;
+	font-size: var(--font-ui-small);
+	color: var(--text-normal);
+	background-color: var(--interactive-normal);
+	cursor: pointer;
+}
+
+.fc-btn:hover {
+	background-color: var(--interactive-hover);
+}
+
+.fc-btn:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.fc-btn:focus-visible {
+	outline: 2px solid var(--background-modifier-border-focus);
+	outline-offset: 1px;
+}
+
+.fc-indicator {
+	min-width: 3.5em;
+	text-align: center;
+	font-size: var(--font-ui-small);
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+/* --- Live Preview --------------------------------------------------------- */
+
+.fc-live-deck {
+	width: 100%;
+}
+
+/* Reading View: contenedor del mazo. Mientras el mazo se monta (render
+   asíncrono del Markdown de las caras) no ocupa espacio. */
+.fc-deck-host:empty {
+	display: none;
+}
+
+/* En el editor el mazo es un widget de bloque: ancho completo y sin margen
+   doble respecto de los párrafos vecinos. */
+.cm-line .fc-live-deck .fc-deck {
+	margin: 0.25rem 0;
+}
+
+/* --- Movimiento reducido --------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+	.fc-card {
+		transition: none;
+	}
+}
+
+/* --- Móvil ----------------------------------------------------------------- */
+
+.is-mobile .fc-deck {
+	padding: 0.5rem;
+}
+
+.is-mobile .fc-btn {
+	padding: 0.45rem 0.85rem;
+}
